@@ -3,6 +3,7 @@ export default class Slide {
     this.slide = document.querySelector(slide)
     this.wrapper = document.querySelector(wrapper)
     this.distance = { finalPosition: 0, startX: 0, movement: 0 }
+    this.activeClass = 'active'
   }
 
   transition(active) {
@@ -100,6 +101,14 @@ export default class Slide {
     this.moveSlide(activeSlide.position)
     this.slidesNavigationIndex(index)
     this.distance.finalPosition = activeSlide.position
+    this.changeActiveClass()
+  }
+
+  changeActiveClass() {
+    this.slideArray.forEach((slide) => {
+      slide.element.classList.remove(this.activeClass)
+    })
+    this.slideArray[this.index.active].element.classList.add(this.activeClass)
   }
 
   activatePrevSlide() {
