@@ -1,4 +1,5 @@
 import debounce from './debounce.js'
+
 export default class Slide {
   constructor(slide, wrapper) {
     this.slide = document.querySelector(slide)
@@ -118,7 +119,7 @@ export default class Slide {
     }
   }
 
-  onResize() { 
+  onResize() {
     setTimeout(() => {
       this.slidesConfig()
       this.changeSlide(this.index.active)
@@ -134,6 +135,9 @@ export default class Slide {
     this.onMove = this.onMove.bind(this)
     this.onExit = this.onExit.bind(this)
     this.onResize = debounce(this.onResize.bind(this), 200)
+
+    this.activatePrevSlide = this.activatePrevSlide.bind(this)
+    this.activateNextSlide = this.activateNextSlide.bind(this)
   }
 
   init() {
@@ -143,6 +147,7 @@ export default class Slide {
       this.addSlideEvents()
       this.addResizeEvent()
       this.slidesConfig()
+      this.changeSlide(0)
     }
     return this
   }
