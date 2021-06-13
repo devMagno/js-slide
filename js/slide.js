@@ -6,6 +6,7 @@ export default class Slide {
     this.wrapper = document.querySelector(wrapper)
     this.distance = { finalPosition: 0, startX: 0, movement: 0 }
     this.activeClass = 'active'
+    this.changeEvent = new Event('changeEvent')
   }
 
   transition(active) {
@@ -98,6 +99,7 @@ export default class Slide {
     this.slidesNavigationIndex(index)
     this.distance.finalPosition = activeSlide.position
     this.changeActiveClass()
+    this.wrapper.dispatchEvent(this.changeEvent)
   }
 
   changeActiveClass() {
